@@ -1,0 +1,6 @@
+# file: hosts
+[workspace]
+centos7.local
+
+[servers:children]
+workspace

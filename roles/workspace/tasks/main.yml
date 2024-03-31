@@ -1,0 +1,8 @@
+---
+# tasks file for workspace
+- name: Install tree package
+  yum:
+   name: tree
+   state: present
+
+- include_tasks: install-git.yml

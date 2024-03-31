@@ -1,0 +1,6 @@
+---
+# file: ping.yml
+- hosts: servers
+  tasks:
+  - name: Ping Connection
+    ansible.builtin.ping:

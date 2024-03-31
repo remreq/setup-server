@@ -1,0 +1,7 @@
+---
+# file: host_vars/centos7.local.yml
+ansible_host: localhost
+ansible_connection: ssh
+ansible_user: centos
+ansible_password: centospassword
+ansible_become_password: centospassword

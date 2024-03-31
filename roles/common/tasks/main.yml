@@ -1,0 +1,6 @@
+---
+# tasks file for common
+- name: Install curl package
+  yum:
+   name: curl
+   state: present

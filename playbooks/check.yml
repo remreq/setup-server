@@ -1,0 +1,22 @@
+---
+# file: playbooks/check.yml
+- name: Check host reachability and sudo permission
+  hosts: all  # すべてのインベントリホストを対象とします
+  gather_facts: no  # ホストの事前収集を行わないように設定します
+
+  tasks:
+    - name: Ping host
+      ping:  # インベントリホストへの ICMP ピンクを送信します
+      ignore_errors: yes  # ホストが ping に応答しない場合は、エラーを無視します
+      register: ping_result  # ping の結果を登録します
+
+    - name: Check sudo permission
+      command: whoami  # whoami コマンドを実行して現在のユーザー名を取得します
+      become: true  # 昇格権限を使用してコマンドを実行します
+      register: sudo_result  # whoami コマンドの結果を登録します
+      ignore_errors: true  # 昇格権限がない場合もエラーを無視します
+
+    - name: Print results
+      debug:
+        msg: |
+          Host {{ inventory_hostname }} is {{ 'reachable and sudo is available.' if ping_result is success and sudo_result is success else 'not reachable or sudo is not available.' }}
